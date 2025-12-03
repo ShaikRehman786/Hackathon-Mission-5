@@ -17,6 +17,7 @@ async function searchMeals(){
     // check the search input
     if(searchTerm === ""){
         message.textContent = "Please enter meal name...";
+        results.innerHTML = ""
         return;
     }
 
@@ -36,6 +37,7 @@ async function searchMeals(){
 
     // clear the message
     message.textContent="";
+    results.innerHTML = "";
     
 
     // loop

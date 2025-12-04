@@ -71,21 +71,36 @@ async function searchMeals(){
 
 // modal
 function openModal(meal){
+    // Get ingredients dynamically
+    let ingredients = "";
+    for(let i = 1; i <= 20; i++){
+        let ingredient = meal[`strIngredient${i}`];
+        let measure = meal[`strMeasure${i}`];
+
+        if(ingredient && ingredient.trim() !== ""){
+            ingredients += `<li>${ingredient} - ${measure}</li>`;
+        }
+    }
+
     modalBody.innerHTML= `
         <div class="modal-header">
             <img src="${meal.strMealThumb}">
             <h2>${meal.strMeal}</h2>
-            <p><strong>Category:</strong>${meal.strCategory} | <strong>Area:</strong>${meal.strArea}</p>
+            <p><strong>Category:</strong> ${meal.strCategory} | <strong>Area:</strong> ${meal.strArea}</p>
         </div>
 
         <div class="modal-body">
-            <h3>Instrctions:</h3>
+            <h3>Ingredients:</h3>
+            <ul>${ingredients}</ul>
+
+            <h3>Instructions:</h3>
             <p>${meal.strInstructions}</p>
         </div>
     `;
 
     modal.style.display = "flex";
 }
+
 
 
 // close closeBtn
